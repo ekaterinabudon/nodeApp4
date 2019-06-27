@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App2-Client</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="/static.pdf">static.pdf</a></li>
+      <li><a href="/index.html">index.html</a></li>
+    </ul>
+    <form>
+      Number 1: <input type="number" id="n1">
+      Number 2: <input type="number" id="n2">
+      <button type="button" id='add'>Add</button>
+      <button type="button" id='mpy'>Mpy</button>
+    </form>
+    <p id='result'></p>
+    <script>
+      let url = '';
+      add.addEventListener('click', function() {
+        url = `/add/${n1.value}/${n2.value}`;
+        fetchResult(url);
+      });
+
+      mpy.addEventListener('click', function() {
+        url = `/mpy/${n1.value}/${n2.value}`;
+        fetchResult(url);
+      });
+
+      function fetchResult(url) {
+        result.textContent = '';
+        fetch(url)
+          .then((data) => data.text())
+          .then((data) => result.textContent = data);
+      }
+    </script>
+  </body>
+</html>
